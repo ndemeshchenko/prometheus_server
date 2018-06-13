@@ -100,7 +100,22 @@ This role uses two tags: **build** and **configure**
 
   roles:
     - name: sansible.prometheus_server
-      environment: dev
-      path:
-        data: /home/prometheus/data
+      prometheus_server:
+        environment: dev
+        checksum: sha256:3088dd15e4cbad65db40bff194e3c9c4e3df5245fe684c1251e5a48c18a1a822
+        download_url: https://github.com/prometheus/prometheus/releases/download/v2.3.0/prometheus-2.3.0.linux-amd64.tar.gz
+        path:
+          config: /home/prometheus/config
+          data: /home/prometheus/data
+          install: /home/prometheus
+          log: /home/prometheus/log
+          pid: /home/prometheus/run
+          rule: /home/prometheus/rules
+          sd: /home/prometheus/tgroups
+        alertmanager:
+          url: ~
+        user: prometheus
+        group: prometheus
+        opts: ~
+        download_dest: /tmp
 ```
